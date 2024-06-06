@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Downloader</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mt-5">YouTube Downloader</h1>
+        <form method="post" class="mt-4">
+            <div class="form-group">
+                <label for="url">YouTube Video URL</label>
+                <input type="url" class="form-control" id="url" name="url" placeholder="Enter YouTube URL" required>
+            </div>
+            <div class="form-group">
+                <label for="choice">Download as</label>
+                <select class="form-control" id="choice" name="choice" required>
+                    <option value="mp4">MP4 (Video)</option>
+                    <option value="mp3">MP3 (Audio)</option>
+                </select>
+            </div>
+            <div class="form-group" id="resolution-group" style="display:none;">
+                <label for="resolution">Resolution</label>
+                <select class="form-control" id="resolution" name="resolution">
+                    <option value="highest">Highest Available</option>
+                    <option value="1080p">1080p</option>
+                    <option value="720p">720p</option>
+                    <option value="480p">480p</option>
+                    <option value="360p">360p</option>
+                    <option value="240p">240p</option>
+                    <option value="144p">144p</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Download</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#choice').change(function(){
+                if ($(this).val() == 'mp4') {
+                    $('#resolution-group').show();
+                } else {
+                    $('#resolution-group').hide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
